@@ -43,13 +43,13 @@ def main():
     if arguments['generate']:
         command = ("wget "
                    "--recursive "             # follow links to download entire site
-                   "{2} "         # make links relative
+                   "{2} "                     # make links relative
                    "--page-requisites "       # grab everything: css / inlined images
                    "--no-parent "             # don't go to parent level
                    "--directory-prefix {1} "  # download contents to static/ folder
                    "--no-host-directories "   # don't create domain named folder
-                   "--restrict-file-name={3} "  # don't escape query string
-                   "{0}").format(arguments['--domain'], static_path, '' if is_windows else '--convert-links', 'windows' if is_windows else 'unix')
+                   "--restrict-file-name=unix "  # don't escape query string
+                   "{0}").format(arguments['--domain'], static_path, '' if is_windows else '--convert-links')
         result = os.system(command)
 
         if result > 0:
